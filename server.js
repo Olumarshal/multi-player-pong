@@ -22,7 +22,8 @@ server.listen(3000, () => {
 
 let readyPlayerCount = 0;
 
-io.on("connection", (socket) => {
+const pongNamespace = io.of('/pong');
+pongNamespace.on("connection", (socket) => {
     console.log("a user connected", socket.id);
 
     socket.on('ready', () => {
@@ -31,7 +32,7 @@ io.on("connection", (socket) => {
         readyPlayerCount++;
 
         if(readyPlayerCount % 2 === 0) {
-            io.emit('startGame', socket.id);
+            pongNamespace.emit('startGame', socket.id);
         }
     });
 

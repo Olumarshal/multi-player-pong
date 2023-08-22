@@ -1,4 +1,4 @@
-const socket = io();
+const socket = io('/pong');
 
 // Canvas Related
 const canvas = document.createElement("canvas");
